@@ -22,6 +22,9 @@ public class OrderVO {
     @NotNull
     private BigDecimal totalPrice;
 
+    public OrderVO() {
+    }
+
     public Long getProductId() {
         return productId;
     }

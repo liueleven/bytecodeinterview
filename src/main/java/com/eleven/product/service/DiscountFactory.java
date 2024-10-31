@@ -14,6 +14,9 @@ public class DiscountFactory {
     }
 
     public static IOrderDiscountService getDiscount(DiscountType discountType) {
+        if (discountType == null) {
+            return new NormalOrderService();
+        }
         switch (discountType) {
             case FULL:
                 return new FullDiscountOrderService();

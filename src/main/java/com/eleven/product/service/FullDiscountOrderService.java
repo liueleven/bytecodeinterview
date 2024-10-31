@@ -27,7 +27,7 @@ public class FullDiscountOrderService implements IOrderDiscountService {
     public BigDecimal calculate(OrderVO order) {
         for (Map.Entry<BigDecimal, BigDecimal> entry : MAP.entrySet()) {
             BigDecimal key = entry.getKey();
-            if (order.getTotalPrice().compareTo(key) > 0) {
+            if (order.getTotalPrice().compareTo(key) >= 0) {
                 return order.getTotalPrice().subtract(entry.getValue());
             }
         }

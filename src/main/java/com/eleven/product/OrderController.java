@@ -4,6 +4,7 @@ import com.eleven.product.domain.Order;
 import com.eleven.product.domain.OrderVO;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,7 +30,7 @@ import java.math.BigDecimal;
 public class OrderController {
 
 
-    @GetMapping("/order/calculate")
+    @PostMapping("/order/calculate")
     public BigDecimal calc(@RequestBody @Validated OrderVO orderVO) {
         Order order = new Order(orderVO.getProductId(), orderVO.getDiscountType(), orderVO.getTotalPrice());
         return order.getDiscountStrategy().calculate(orderVO);
