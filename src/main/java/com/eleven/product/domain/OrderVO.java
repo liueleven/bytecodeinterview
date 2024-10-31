@@ -1,6 +1,8 @@
 package com.eleven.product.domain;
 
 import com.eleven.product.service.DiscountFactory;
+import com.sun.istack.internal.NotNull;
+import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 
@@ -9,14 +11,15 @@ import java.math.BigDecimal;
  * @date: 2024-10-31 17:56
  * @author: liuziqing
  */
-
+@Validated
 public class OrderVO {
 
     // 商品ID和使用的优惠券类型
+    @NotNull
     private Long productId;
-
+    @NotNull
     private DiscountFactory.DiscountType discountType;
-
+    @NotNull
     private BigDecimal totalPrice;
 
     public Long getProductId() {
