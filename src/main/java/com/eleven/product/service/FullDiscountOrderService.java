@@ -21,16 +21,20 @@ public class FullDiscountOrderService implements IOrderDiscountService {
         MAP.put(new BigDecimal("5000"), new BigDecimal("100"));
     }
 
+    private BigDecimal totalPrice;
 
+    public FullDiscountOrderService(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     @Override
-    public BigDecimal calculate(OrderVO order) {
+    public BigDecimal calculate() {
         for (Map.Entry<BigDecimal, BigDecimal> entry : MAP.entrySet()) {
             BigDecimal key = entry.getKey();
-            if (order.getTotalPrice().compareTo(key) >= 0) {
-                return order.getTotalPrice().subtract(entry.getValue());
+            if (totalPrice.compareTo(key) >= 0) {
+                return totalPrice.subtract(entry.getValue());
             }
         }
-        return order.getTotalPrice();
+        return totalPrice;
     }
 }

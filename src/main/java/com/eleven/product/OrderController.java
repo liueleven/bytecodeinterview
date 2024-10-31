@@ -32,8 +32,9 @@ public class OrderController {
 
     @PostMapping("/order/calculate")
     public BigDecimal calc(@RequestBody @Validated OrderVO orderVO) {
+        // 实际上价格需要从数据库中查询，这里为了简单，直接赋值
         Order order = new Order(orderVO.getProductId(), orderVO.getDiscountType(), orderVO.getTotalPrice());
-        return order.getDiscountStrategy().calculate(orderVO);
+        return order.getDiscountStrategy().calculate();
 
     }
 

@@ -19,7 +19,7 @@ public class OrderVO {
     private Long productId;
     @NotNull
     private DiscountFactory.DiscountType discountType;
-    @NotNull
+
     private BigDecimal totalPrice;
 
     public OrderVO() {

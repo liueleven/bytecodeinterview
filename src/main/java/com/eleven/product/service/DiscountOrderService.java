@@ -16,9 +16,16 @@ import java.util.Map;
 public class DiscountOrderService implements IOrderDiscountService {
 
     private static final BigDecimal DISCOUNT_RATE = new BigDecimal("0.9");
-    @Override
-    public BigDecimal calculate(OrderVO order) {
 
-        return order.getTotalPrice().multiply(DISCOUNT_RATE);
+    private BigDecimal totalPrice;
+
+    public DiscountOrderService(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public BigDecimal calculate() {
+
+        return totalPrice.multiply(DISCOUNT_RATE);
     }
 }

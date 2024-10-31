@@ -11,5 +11,7 @@ import java.math.BigDecimal;
  */
 public interface IOrderDiscountService {
 
-    BigDecimal calculate(OrderVO order);
+    BigDecimal calculate();
+
+
 }

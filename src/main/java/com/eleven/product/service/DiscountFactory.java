@@ -2,6 +2,8 @@ package com.eleven.product.service;
 
 import com.eleven.product.domain.OrderVO;
 
+import java.math.BigDecimal;
+
 /**
  * @description:
  * @date: 2024-10-31 18:07
@@ -13,16 +15,16 @@ public class DiscountFactory {
         FULL, DISCOUNT
     }
 
-    public static IOrderDiscountService getDiscount(DiscountType discountType) {
+    public static IOrderDiscountService getDiscount(DiscountType discountType, BigDecimal totalPrice) {
         if (discountType == null) {
-            return new NormalOrderService();
+            return new NormalOrderService(totalPrice);
         }
         switch (discountType) {
             case FULL:
-                return new FullDiscountOrderService();
+                return new FullDiscountOrderService(totalPrice);
             case DISCOUNT:
-                return new DiscountOrderService();
+                return new DiscountOrderService(totalPrice);
         }
-        return new NormalOrderService();
+        return new NormalOrderService(totalPrice);
     }
 }

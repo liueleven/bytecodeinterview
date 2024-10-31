@@ -26,11 +26,14 @@ public class Order {
     public Order(Long productId, DiscountFactory.DiscountType discountType, BigDecimal totalPrice) {
         this.productId = productId;
         this.discountType = discountType;
-        this.totalPrice = totalPrice;
-        this.discountStrategy = DiscountFactory.getDiscount(discountType);
+        this.discountStrategy = DiscountFactory.getDiscount(discountType, totalPrice);
     }
 
     public IOrderDiscountService getDiscountStrategy() {
         return discountStrategy;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 }
